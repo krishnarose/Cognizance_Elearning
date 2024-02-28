@@ -5,6 +5,8 @@
     @include('layouts.admin.head')
     <title>@yield('title')</title>
     @include('layouts.admin.css')
+
+    @yield('custom_styles')
 </head>
 
 <body id="page-top">
@@ -99,6 +101,7 @@
     </div>
 
    @include('layouts.admin.scripts')
+   @yield('custem_scripts')
 </body>
 
 </html>
