@@ -101,7 +101,7 @@
     </div>
 
    @include('layouts.admin.scripts')
-   @yield('custem_scripts')
+   @yield('custom_scripts')
 </body>
 
 </html>
