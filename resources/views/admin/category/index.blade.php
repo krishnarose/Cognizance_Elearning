@@ -22,6 +22,11 @@
                         {{ session('success') }}
                     </div>
                 @endif
+                @if (session('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('error') }}
+                    </div>
+                @endif
             </div>
 
         </div>
@@ -42,16 +47,22 @@
                         </thead>
                         <tbody>
                             @foreach ($categories as $category)
-                            <tr>
-                                <td>{{$category->title}}</td>
-                                <td>{{$category->image}}</td>
-                                <td>{{$category->created_at->format('d/m/Y')}}</td>
-                                <td>
-                                    <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                    <a href="" class="btn btn-info"><i class="fas fa-pen"></i></a>
-                                </td>
+                                <tr>
+                                    <td>{{ $category->title }}</td>
+                                    <td> <img src="{{ asset('uploads/category/' . $category->image) }}" alt=""
+                                            height="40"></td>
+                                    <td>{{ $category->created_at->format('d/m/Y') }}</td>
+                                    <td>
+                                        <a onclick="return confirm('Are you sure want to delete this category?')"
+                                            href="{{ url('admin/category/delete/' . $category->id) }}"
+                                            class="btn btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                        <a href="{{ url('admin/category/edit/' . $category->id) }}" class="btn btn-info"><i
+                                                class="fas fa-pen"></i></a>
+                                    </td>
 
-                            </tr>
+                                </tr>
                             @endforeach
 
 
