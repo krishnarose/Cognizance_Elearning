@@ -82,20 +82,56 @@ class CategoryController extends Controller
             return redirect()->back()->with('error','category not found!');
         }
     }
-
+//it only soft delete
     public function destroy($id){
         $category = Category::find($id);
         if($category){
-            $destination ='uploads/category/'.$category->image;
-            if(file::exists($destination)){
-                file::delete($destination);
-            }
             $category->delete();
-            return redirect()->back()->with('success','categorydeleted successfully!');
+            return redirect()->back()->with('success','Category move to Trash successfully!');
 
         }
         else{
             return redirect()->back()->with('error','category not found!');
         }
+    }
+    //it delete permanently
+    public function delete($id)
+    {
+        $category =Category::withTrashed()->where('id',$id)->first();
+        if($category){
+            $destination ='uploads/category/'.$category->image;
+            if(file::exists($destination)){
+                file::delete($destination);
+            }
+            $category->forceDelete();
+            return redirect()->back()->with('success','category Delete Permanently successfully!');
+
+        }
+        else{
+            return redirect()->back()->with('error','category not found!');
+        }
+
+    }
+    //it restore the deleted items
+    public function restore($id)
+    {
+        $category = Category::withTrashed()->where('id',$id)->first();
+        if($category)
+        {
+            $category->restore();
+            return redirect('/admin/categories')->with('success','category Restore successfully!');
+
+        }
+        else
+        {
+            return redirect()->back()->with('error','category not found!');
+        }
+
+    }
+
+    public function trash()
+    {
+        $trashed_categories = Category::onlyTrashed()->get();
+        return view ('admin.trash', compact('trashed_categories'));
     }
 }
