@@ -26,7 +26,6 @@ Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
 
 
     Route::get('/categories',[App\Http\Controllers\Admin\CategoryController::class, 'index']);
-
     Route::get('/category/create', [App\Http\Controllers\Admin\CategoryController::class, 'create']);
     Route::post('/category/create', [App\Http\Controllers\Admin\CategoryController::class, 'store']);
     Route::get('/category/edit/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'edit']);
@@ -36,6 +35,13 @@ Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
     Route::get('/trash',[App\Http\Controllers\Admin\CategoryController::class, 'trash']);
     Route::get('/trash/restore/{id}',[App\Http\Controllers\Admin\CategoryController::class, 'restore']);
     Route::get('/trash/delete/{id}',[App\Http\Controllers\Admin\CategoryController::class, 'delete']);
+
+
+    Route::get('/featured/categories', [App\Http\Controllers\Admin\featuredController::class, 'View_featured_categories']);
+    Route::post('/featured/categories/store', [App\Http\Controllers\Admin\featuredController::class, 'store_featured_category']);
+    Route::get('/featured/courses', [App\Http\Controllers\Admin\featuredController::class, 'View_featured_courses']);
+
+
 
 
 
