@@ -29,5 +29,29 @@
                 </form>
             </div>
         </div>
+
+        <div class="row pt-5" >
+            <div class="col-md-12 card rounded shadow">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Category Title</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    @foreach ($featured_categories as $fcat)
+                    <tr>
+                        <td>{{$fcat->category->title}}</td>
+                        <td>
+                            <a href="{{url('/admin/featured/categories/delete/'.$fcat->id)}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    @endforeach
+
+                </table>
+            </div>
+        </div>
     </div>
+
+
 @endsection
