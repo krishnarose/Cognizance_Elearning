@@ -20,7 +20,45 @@
                     </form>
                 </div>
             </div>
-            <div class="row">
+            <div class="Library">
+                {{-- <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 offset-md-1">
+                            <div class="titlepage">
+                                <h2>Our <strong class="black">Courses </strong></h2>
+                                <span>adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                                    minim veniam, quis nostrud exercitation ullamco laboris</span>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+                <div class="bg">
+                    <div class="container py-5">
+                        <div class="row">
+                            @php
+                                $featuredcategories = App\Models\featuredCategory::all();
+                            @endphp
+
+                            @foreach ($courses as $course)
+                                <div class="col-lg-4 col-md-6 col-12">
+                                    <div class="card" style="width: 18rem;">
+                                        <img class="card-img-top" src="{{ asset('uploads/course/' . $course->image) }}"
+                                            alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $course->title}}</h5>
+                                            {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                                the card's content.</p> --}}
+                                            <a href="{{ url('/category/' . $category->slug . '/' . $course->slug) }}" class="btn btn-primary">Browse</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+                </div>
+
+            {{-- <div class="row">
                 @foreach ($courses as $course)
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="card" style="width: 18rem;">
@@ -34,13 +72,13 @@
                         </div>
                     </div>
                 @endforeach
-                {{-- <br><br><br><br><br><br> --}}
+            </div> --}}
 
-            </div>
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center py-3">
                 {{ $courses->links() }}
             </div>
-            <br>
+
         </div>
+
     </section>
 @endsection

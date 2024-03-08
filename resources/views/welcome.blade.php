@@ -108,7 +108,7 @@
             <div class="row">
                 <div class="col-md-10 offset-md-1">
                     <div class="titlepage">
-                        <h2>Our <strong class="black">Library </strong></h2>
+                        <h2>Our <strong class="black">Courses </strong></h2>
                         <span>adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
                             minim veniam, quis nostrud exercitation ullamco laboris</span>
                     </div>
@@ -116,7 +116,30 @@
             </div>
         </div>
         <div class="bg">
-            <div class="container">
+            <div class="container py-5">
+                <div class="row">
+                    @php
+                        $featuredcategories = App\Models\featuredCategory::all();
+                    @endphp
+
+                    @foreach ($featuredcategories as $fcat)
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="card" style="width: 18rem;">
+                                <img class="card-img-top" src="{{ asset('uploads/category/' . $fcat->category->image) }}"
+                                    alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $fcat->category->title }}</h5>
+                                    {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                        the card's content.</p> --}}
+                                    <a href="{{url('/category/'.$fcat->category->slug)}}" class="btn btn-primary">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+            </div>
+            {{-- <div class="container">
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
                         <div class="Library-box">
@@ -124,7 +147,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <div class="container">
             <div class="row">
@@ -137,29 +160,7 @@
         </div>
     </div>
     <!-- end Library -->
-    <div class="container py-5">
-        <div class="row">
-            @php
-                $featuredcategories = App\Models\featuredCategory::all();
-            @endphp
 
-            @foreach ($featuredcategories as $fcat)
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="{{ asset('uploads/category/' . $fcat->category->image) }}"
-                            alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $fcat->category->title }}</h5>
-                            {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the card's content.</p> --}}
-                            <a href="{{url('/category/'.$fcat->category->slug)}}" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-
-        </div>
-    </div>
     <!--Books -->
     <div class="Books">
         <div class="container">
