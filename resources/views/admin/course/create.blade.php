@@ -37,29 +37,48 @@
                     <div class="md-3">
                         <label for="">Category</label>
                         <select name="category_id" class="form-control">
-                            <option value="0">web development</option>
+                            @foreach ($categories as $category)
+                            <option value="{{$category->id}}">{{$category->title}}</option>
+                            @endforeach
+
                         </select>
 
                     </div>
                     <div class="md-3">
                         <label for="">course Title</label>
                         <input class="form-control" type="text" name="title">
+                        @error('title')
+                            <span class="text-danger text-sm">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="md-3">
                         <label for="">short Description</label>
                         <input class="form-control" type="text"name="description">
+                        @error('description')
+                            <span class="text-danger text-sm">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="md-3">
                         <label for="">Long Description</label>
                         <textarea name="long_description" id="summernote" cols="30" rows="10"></textarea>
+                        @error('long_description')
+                            <span class="text-danger text-sm">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="md-3">
                         <label for="">Slug</label>
                         <input class="form-control" type="text"name="slug">
+                        @error('slug')
+                            <span class="text-danger text-sm">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="md-3">
                         <label for="">Video URL</label>
                         <input class="form-control" type="text"name="video">
+                    </div>
+                    <div class="md-3">
+                        <label for="">Price</label>
+                        <input class="form-control" type="text"name="price">
                     </div>
                     <div class="md-3">
                         <label for="">course Thumbnail</label>

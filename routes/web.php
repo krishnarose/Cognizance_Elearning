@@ -11,19 +11,13 @@ Route::get('/', function () {
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/category/{slug}',[App\Http\Controllers\Client\CategoryController::class, 'index']);
+Route::get('/category/{category_slug}/{course_slug}', [App\Http\Controllers\Client\CourseController::class,'index']);
 
-Route::get('/admin', function(){
-    return view('adminpage');
-})->middleware(['auth','admin']);
 
-Route::get('/user', function(){
-    return view('userpage');
-})->middleware(['auth']);
 
 Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
     Route::get('/dashboard',[App\Http\Controllers\Admin\DashboardController::class, 'index']);
-
-
 
     Route::get('/categories',[App\Http\Controllers\Admin\CategoryController::class, 'index']);
     Route::get('/category/create', [App\Http\Controllers\Admin\CategoryController::class, 'create']);
@@ -49,13 +43,14 @@ Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
     Route::get('/featured/courses', [App\Http\Controllers\Admin\featuredController::class, 'View_featured_courses']);
     Route::get('/featured/categories/delete/{id}', [App\Http\Controllers\Admin\featuredController::class, 'remove_featured_courses']);
 
-
-
-
-
-
-
-
 });
 
+
+// Route::get('/admin', function(){
+//     return view('adminpage');
+// })->middleware(['auth','admin']);
+
+// Route::get('/user', function(){
+//     return view('userpage');
+// })->middleware(['auth']);
 
